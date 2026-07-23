@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christmas Player</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#09111f,#0d1b2a,#14213d);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+color:white;
+}
+
+.player{
+width:350px;
+padding:25px;
+border-radius:25px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(12px);
+text-align:center;
+box-shadow:0 0 25px rgba(255,255,255,.2);
+}
+
+.cover{
+width:180px;
+height:180px;
+border-radius:20px;
+margin:auto;
+background:#1f2937;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:60px;
+animation:spin 15s linear infinite;
+}
+
+@keyframes spin{
+from{transform:rotate(0deg);}
+to{transform:rotate(360deg);}
+}
+
+h2{
+margin:20px 0 5px;
+}
+
+#lyrics{
+margin:20px 0;
+font-size:18px;
+height:45px;
+font-weight:bold;
+color:#fff;
+}
+
+audio{
+width:100%;
+}
+
+.snow{
+position:absolute;
+width:5px;
+height:5px;
+background:white;
+border-radius:50%;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+from{
+transform:translateY(-10vh);
+}
+to{
+transform:translateY(110vh);
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="player">
+
+<div class="cover">🎄</div>
+
+<h2>Christmas Song</h2>
+
+<div id="lyrics">Press Play</div>
+
+<audio controls id="audio">
+<source src="song.mp3" type="audio/mpeg">
+</audio>
+
+</div>
+
+<script>
+
+for(let i=0;i<80;i++){
+const snow=document.createElement("div");
+snow.className="snow";
+snow.style.left=Math.random()*100+"vw";
+snow.style.animationDuration=(3+Math.random()*4)+"s";
+snow.style.opacity=Math.random();
+snow.style.width=snow.style.height=(2+Math.random()*4)+"px";
+document.body.appendChild(snow);
+}
+
+const lyrics=[
+{time:0,text:"And the toughest part is that we both know"},
+{time:5,text:"What happened to you"},
+{time:10,text:"Why you're out on your own"},
+{time:15,text:"Merry Christmas, please don't call."},
+{time:20,text:"But what if I call?"},
+{time:25,text:"And you pick up the phone"},
+{time:30,text:"And I use this holiday to make my way to your ghost"},
+{time:35,text:"Oh, what if you're lonely"},
+{time:40,text:"And you know I am too"},
+{time:45,text:"And I get the chance to say"},
+{time:50,text:"Merry Christmas"},
+{time:55,text:"I miss you"},
+{time:60,text:"I miss you"}
+];
+
+const audio=document.getElementById("audio");
+const box=document.getElementById("lyrics");
+
+audio.addEventListener("timeupdate",()=>{
+for(let i=lyrics.length-1;i>=0;i--){
+if(audio.currentTime>=lyrics[i].time){
+box.textContent=lyrics[i].text;
+break;
+}
+}
+});
+
+</script>
+
+</body>
+</html>
