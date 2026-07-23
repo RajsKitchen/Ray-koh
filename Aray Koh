@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merry Christmas, I Miss You</title>
+
+<style>
+body{
+    margin:0;
+    background:linear-gradient(135deg,#0f172a,#1e293b,#0b1220);
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    font-family:Arial,sans-serif;
+}
+
+.card{
+    width:340px;
+    padding:25px;
+    border-radius:25px;
+    backdrop-filter:blur(15px);
+    background:rgba(255,255,255,.08);
+    color:white;
+    text-align:center;
+    box-shadow:0 0 30px rgba(255,255,255,.15);
+}
+
+.album{
+    width:180px;
+    height:180px;
+    margin:auto;
+    border-radius:20px;
+    background:url("cover.jpg") center/cover;
+    animation:spin 12s linear infinite;
+}
+
+@keyframes spin{
+from{transform:rotate(0deg);}
+to{transform:rotate(360deg);}
+}
+
+h2{
+margin-top:20px;
+font-size:24px;
+}
+
+p{
+opacity:.8;
+margin-top:5px;
+}
+
+.bar{
+margin-top:25px;
+display:flex;
+justify-content:center;
+gap:5px;
+height:45px;
+}
+
+.bar span{
+width:6px;
+background:#ffffff;
+border-radius:10px;
+animation:music 1s infinite ease-in-out;
+}
+
+.bar span:nth-child(2){animation-delay:.2s;}
+.bar span:nth-child(3){animation-delay:.4s;}
+.bar span:nth-child(4){animation-delay:.6s;}
+.bar span:nth-child(5){animation-delay:.8s;}
+
+@keyframes music{
+0%,100%{height:10px;}
+50%{height:40px;}
+}
+
+.snow{
+position:absolute;
+width:5px;
+height:5px;
+background:white;
+border-radius:50%;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+from{transform:translateY(-10vh);}
+to{transform:translateY(110vh);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+<div class="album"></div>
+
+<h2>Merry Christmas, I Miss You</h2>
+<p>Alex Crichton</p>
+
+<div class="bar">
+<span></span><span></span><span></span><span></span><span></span>
+</div>
+
+<audio controls autoplay loop style="margin-top:20px;width:100%;">
+<source src="song.mp3" type="audio/mpeg">
+</audio>
+
+</div>
+
+<script>
+for(let i=0;i<80;i++){
+let snow=document.createElement("div");
+snow.className="snow";
+snow.style.left=Math.random()*100+"vw";
+snow.style.animationDuration=(3+Math.random()*5)+"s";
+snow.style.opacity=Math.random();
+snow.style.width=snow.style.height=(2+Math.random()*5)+"px";
+document.body.appendChild(snow);
+}
+</script>
+
+</body>
+</html>
